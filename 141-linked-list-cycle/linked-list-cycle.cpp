@@ -9,17 +9,16 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        bool b=0; 
-        map<ListNode*,int>mp;
+        bool cycle=0; 
         while(head != nullptr){
-            mp[head]++;
-            if(mp[head]>1){
-                b=1;
+            if(head->val==1e6){
+                cycle= 1;
                 break;
             }
-            head = head->next;
+            head->val=1e6;
+            head=head->next;
         }
 
-        return b;
+        return cycle;
     }
 };

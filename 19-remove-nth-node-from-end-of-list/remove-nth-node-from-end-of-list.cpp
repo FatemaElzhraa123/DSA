@@ -31,8 +31,7 @@ public:
             current = current->next; 
             counter++;
             if(counter==list_size-n){
-                if(current!=nullptr)
-                    prev->next = current->next;
+                prev->next = current->next;
                 break;
             }
         }

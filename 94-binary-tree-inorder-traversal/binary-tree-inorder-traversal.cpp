@@ -12,17 +12,28 @@
  
 class Solution {
 public:
-    vector<int>ans;
-    void dfs(TreeNode* root){
-        if(root!=nullptr && root->left !=nullptr)
-            dfs(root->left);
-        if(root!=nullptr)
-            ans.push_back(root->val);
-        if(root!=nullptr &&  root->right !=nullptr)
-            dfs(root->right);
-    }
     vector<int> inorderTraversal(TreeNode* root) {
-        dfs(root);
+        stack<TreeNode*>st;
+        vector<int>ans;
+
+        st.push(root);
+        while(!st.empty()){
+            root = st.top();
+            while(root!=nullptr && root->left!=nullptr){
+                st.push(root->left);
+                root->left = nullptr;
+                root = st.top();
+            }
+            
+            if(root!=nullptr)
+                ans.push_back(root->val);
+            st.pop();
+            if(root!=nullptr && root->right!=nullptr){
+                st.push(root->right);
+                root->right = nullptr;
+            }
+        }
+
         return ans ;
     }
 };
